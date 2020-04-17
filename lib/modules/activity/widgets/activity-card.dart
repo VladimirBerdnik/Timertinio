@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -16,11 +18,22 @@ class ActivityCard extends StatefulWidget {
 
 class ActivityCardState extends State<ActivityCard> {
   Activity _activity;
+  Timer timer;
 
   @override
   void initState() {
     _activity = widget.activity;
+    timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
+      this.setState(() {});
+      // something here
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 
   @override
