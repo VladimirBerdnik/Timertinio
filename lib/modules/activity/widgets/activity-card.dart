@@ -29,20 +29,29 @@ class ActivityCardState extends State<ActivityCard> {
         child: StoreConnector<AppState, Store>(
             converter: (Store store) => store,
             builder: (context, Store store) {
-              return FlatButton(
-                child: Text(_activity.name + "\n" + _activity.duration.toString().split('.').first,
-                    textAlign: TextAlign.center),
-                color: Colors.black12,
-                onPressed: () {
-                  if (_activity.isStarted()) {
-                    store.dispatch(StopActivityAction(_activity));
-                  } else {
-                    store.dispatch(StartActivityAction(_activity));
-                  }
-                },
-                onLongPress: () {
-                  store.dispatch(ResetActivityAction(_activity));
-                },
+              return Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(_activity.isStarted() ? Icons.pause : Icons.play_arrow),
+                    title: Text(_activity.name),
+                    subtitle: Text(_activity.duration.toString().split('.').first),
+                    trailing: IconButton(
+                        icon: Icon(Icons.cancel),
+                        onPressed: () {
+                          store.dispatch(RemoveActivityAction(_activity));
+                        }),
+                    onTap: () {
+                      if (_activity.isStarted()) {
+                        store.dispatch(StopActivityAction(_activity));
+                      } else {
+                        store.dispatch(StartActivityAction(_activity));
+                      }
+                    },
+                    onLongPress: () {
+                      store.dispatch(ResetActivityAction(_activity));
+                    },
+                  )
+                ],
               );
             }));
   }

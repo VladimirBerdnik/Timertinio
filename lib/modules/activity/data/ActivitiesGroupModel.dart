@@ -5,12 +5,15 @@ class ActivitiesGroup {
 
   ActivitiesGroup();
 
+  List<Activity> get activities => _items;
+
   void add(Activity activity) {
     this._items.add(activity);
   }
 
-
-  List<Activity> get activities => _items;
+  void remove(Activity activity) {
+    this._items.remove(activity);
+  }
 
   Activity getActivity(Activity activity) {
     return _items.firstWhere((Activity item) => item.name == activity.name);

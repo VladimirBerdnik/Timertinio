@@ -14,8 +14,10 @@ ActivitiesGroup activitiesGroupReducer(ActivitiesGroup activitiesGroup, action) 
     return stopActivityReducer(activitiesGroup, action);
   } else if (action is ResetActivityAction) {
     return resetActivityReducer(activitiesGroup, action);
-  }else if (action is AddActivityAction) {
+  } else if (action is AddActivityAction) {
     return addActivityReducer(activitiesGroup, action);
+  } else if (action is RemoveActivityAction) {
+    return removeActivityReducer(activitiesGroup, action);
   }
 
   return activitiesGroup;
@@ -41,6 +43,12 @@ ActivitiesGroup resetActivityReducer(ActivitiesGroup activitiesGroup, ResetActiv
 
 ActivitiesGroup addActivityReducer(ActivitiesGroup activitiesGroup, AddActivityAction action) {
   activitiesGroup.add(new Activity(action.name));
+
+  return activitiesGroup;
+}
+
+ActivitiesGroup removeActivityReducer(ActivitiesGroup activitiesGroup, RemoveActivityAction action) {
+  activitiesGroup.remove(action.activity);
 
   return activitiesGroup;
 }

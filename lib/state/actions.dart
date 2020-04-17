@@ -12,6 +12,12 @@ class AddActivityAction {
   AddActivityAction(this.name);
 }
 
+class RemoveActivityAction {
+  final Activity activity;
+
+  RemoveActivityAction(this.activity);
+}
+
 class StopActivityAction {
   final Activity activity;
 
