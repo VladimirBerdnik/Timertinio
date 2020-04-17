@@ -1,0 +1,176 @@
+import 'package:timertinio/modules/catalogue/data/CategoryModel.dart';
+import 'package:timertinio/modules/catalogue/data/ProductModel.dart';
+
+class ProductsRepository {
+  static List<List<Product>> goods = [
+    [
+      Product(1, 'Пряник "Топленое молоко"', "Пакет", "кг", 5, 100, [
+        "assets/goods/01/01.webp",
+        "assets/goods/01/02.webp",
+        "assets/goods/01/03.webp",
+        "assets/goods/01/04.webp",
+        "assets/goods/01/05.webp",
+        "assets/goods/01/06.webp",
+      ]),
+      Product(2, 'Пряник "Медовый" ', "Пакет", "кг", 5, 125, [
+        "assets/goods/01/02.webp",
+        "assets/goods/01/01.webp",
+        "assets/goods/01/03.webp",
+        "assets/goods/01/04.webp",
+        "assets/goods/01/05.webp",
+        "assets/goods/01/06.webp",
+      ]),
+      Product(3, 'Пряник "Мятный"', "Пакет", "кг", 5, 130, [
+        "assets/goods/01/03.webp",
+        "assets/goods/01/01.webp",
+        "assets/goods/01/02.webp",
+        "assets/goods/01/04.webp",
+        "assets/goods/01/05.webp",
+        "assets/goods/01/06.webp",
+      ]),
+      Product(4, 'Пряник "Шоколадный"', "Пакет", "кг", 5, 220, [
+        "assets/goods/01/04.webp",
+        "assets/goods/01/01.webp",
+        "assets/goods/01/02.webp",
+        "assets/goods/01/03.webp",
+        "assets/goods/01/05.webp",
+        "assets/goods/01/06.webp",
+      ]),
+      Product(5, 'Пряник "Пломбир"', "Пакет", "кг", 5, 186, [
+        "assets/goods/01/05.webp",
+        "assets/goods/01/04.webp",
+        "assets/goods/01/01.webp",
+        "assets/goods/01/02.webp",
+        "assets/goods/01/03.webp",
+        "assets/goods/01/06.webp",
+      ]),
+      Product(6, 'Пряник "Карамельный"', "Пакет", "кг", 5, 95, [
+        "assets/goods/01/06.webp",
+        "assets/goods/01/04.webp",
+        "assets/goods/01/01.webp",
+        "assets/goods/01/02.webp",
+        "assets/goods/01/03.webp",
+        "assets/goods/01/05.webp",
+      ]),
+    ],
+    [
+      Product(7, 'Вафли "Арахисовые"', "Экран", "кг", 5, 100, [
+        "assets/goods/02/01.webp",
+        "assets/goods/02/02.webp",
+        "assets/goods/02/03.webp",
+        "assets/goods/02/04.webp",
+        "assets/goods/02/05.webp",
+        "assets/goods/02/06.webp",
+      ]),
+      Product(8, 'Печенье "Кофейное"', "Экран", "кг", 5, 100, [
+        "assets/goods/02/02.webp",
+        "assets/goods/02/01.webp",
+        "assets/goods/02/03.webp",
+        "assets/goods/02/04.webp",
+        "assets/goods/02/05.webp",
+        "assets/goods/02/06.webp",
+      ]),
+      Product(9, 'Печенье "Зоомир"', "Экран", "кг", 5, 98, [
+        "assets/goods/02/03.webp",
+        "assets/goods/02/01.webp",
+        "assets/goods/02/02.webp",
+        "assets/goods/02/04.webp",
+        "assets/goods/02/05.webp",
+        "assets/goods/02/06.webp",
+      ]),
+      Product(10, 'Печенье "Топленое молоко"', "Экран", "кг", 5, 113, [
+        "assets/goods/02/04.webp",
+        "assets/goods/02/01.webp",
+        "assets/goods/02/02.webp",
+        "assets/goods/02/03.webp",
+        "assets/goods/02/05.webp",
+        "assets/goods/02/06.webp",
+      ]),
+      Product(11, 'Печенье "Крокет"', "Экран", "кг", 5, 208, [
+        "assets/goods/02/05.webp",
+        "assets/goods/02/01.webp",
+        "assets/goods/02/02.webp",
+        "assets/goods/02/03.webp",
+        "assets/goods/02/04.webp",
+        "assets/goods/02/06.webp",
+      ]),
+      Product(12, 'Печенье "Кунжутное"', "Экран", "кг", 5, 206, [
+        "assets/goods/02/06.webp",
+        "assets/goods/02/01.webp",
+        "assets/goods/02/02.webp",
+        "assets/goods/02/03.webp",
+        "assets/goods/02/04.webp",
+        "assets/goods/02/05.webp",
+      ]),
+    ],
+    [
+      Product(13, 'Конфеты "Арахис"', "Экран", "кг", 5, 145, [
+        "assets/goods/03/01.webp",
+        "assets/goods/03/02.webp",
+        "assets/goods/03/03.webp",
+        "assets/goods/03/04.webp",
+        "assets/goods/03/05.webp",
+        "assets/goods/03/06.webp",
+        "assets/goods/03/07.webp",
+      ]),
+      Product(14, 'Конфеты "Морские камушки"', "Экран", "кг", 5, 135, [
+        "assets/goods/03/02.webp",
+        "assets/goods/03/01.webp",
+        "assets/goods/03/03.webp",
+        "assets/goods/03/04.webp",
+        "assets/goods/03/05.webp",
+        "assets/goods/03/06.webp",
+        "assets/goods/03/07.webp",
+      ]),
+      Product(15, 'Мармелад "Фруктовый"', "Экран", "кг", 5, 155, [
+        "assets/goods/03/03.webp",
+        "assets/goods/03/01.webp",
+        "assets/goods/03/02.webp",
+        "assets/goods/03/04.webp",
+        "assets/goods/03/05.webp",
+        "assets/goods/03/06.webp",
+        "assets/goods/03/07.webp",
+      ]),
+      Product(16, 'Зефир в шоколаде', "Экран", "кг", 5, 250, [
+        "assets/goods/03/04.webp",
+        "assets/goods/03/01.webp",
+        "assets/goods/03/02.webp",
+        "assets/goods/03/03.webp",
+        "assets/goods/03/05.webp",
+        "assets/goods/03/06.webp",
+        "assets/goods/03/07.webp",
+      ]),
+      Product(17, 'Конфеты "ALBO"', "Экран", "кг", 5, 185, [
+        "assets/goods/03/05.webp",
+        "assets/goods/03/01.webp",
+        "assets/goods/03/02.webp",
+        "assets/goods/03/03.webp",
+        "assets/goods/03/04.webp",
+        "assets/goods/03/06.webp",
+        "assets/goods/03/07.webp",
+      ]),
+      Product(18, 'Конфеты "Жасмин"', "Экран", "кг", 5, 130, [
+        "assets/goods/03/06.webp",
+        "assets/goods/03/01.webp",
+        "assets/goods/03/02.webp",
+        "assets/goods/03/03.webp",
+        "assets/goods/03/04.webp",
+        "assets/goods/03/05.webp",
+        "assets/goods/03/07.webp",
+      ]),
+      Product(18, 'Конфеты "KIYOTO"', "Экран", "кг", 5, 206, [
+        "assets/goods/03/07.webp",
+        "assets/goods/03/01.webp",
+        "assets/goods/03/02.webp",
+        "assets/goods/03/03.webp",
+        "assets/goods/03/04.webp",
+        "assets/goods/03/05.webp",
+        "assets/goods/03/06.webp",
+      ]),
+    ]
+  ];
+
+  static List<Product> fetchByCategory(Category category) {
+    return goods[category.id - 1];
+  }
+}
