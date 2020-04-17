@@ -24,8 +24,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   font_awesome_flutter:
-  carousel_slider: ^1.4.1
-  photo_view:
   badges: ^1.1.1
   flutter_redux: ^0.5.3
   redux: ^3.0.0
