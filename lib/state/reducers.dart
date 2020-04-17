@@ -1,37 +1,37 @@
-import 'package:timertinio/modules/cart/data/OrderModel.dart';
+import 'package:timertinio/modules/activity/data/ActivitiesGroupModel.dart';
 import 'package:timertinio/state/actions.dart';
 import 'package:timertinio/state/state.dart';
 
 AppState appStateReducer(AppState state, action) {
-  return AppState(orderReducer(state.order, action));
+  return AppState(activitiesGroupReducer(state.activitiesGroup, action));
 }
 
-Order orderReducer(Order order, action) {
-  if (action is AddItemAction) {
-    return addItemReducer(order, action);
-  } else if (action is RemoveItemAction) {
-    return removeItemReducer(order, action);
-  } else if (action is ChangeQuantityAction) {
-    return changeQuantityReducer(order, action);
+ActivitiesGroup activitiesGroupReducer(ActivitiesGroup activitiesGroup, action) {
+  if (action is StartActivityAction) {
+    return startActivityReducer(activitiesGroup, action);
+  } else if (action is StopActivityAction) {
+    return stopActivityReducer(activitiesGroup, action);
+  } else if (action is ResetActivityAction) {
+    return resetActivityReducer(activitiesGroup, action);
   }
 
-  return order;
+  return activitiesGroup;
 }
 
-Order addItemReducer(Order order, AddItemAction action) {
-  order.add(action.product, action.quantity);
+ActivitiesGroup startActivityReducer(ActivitiesGroup activitiesGroup, StartActivityAction action) {
+  activitiesGroup.startActivity(action.activity);
 
-  return order;
+  return activitiesGroup;
 }
 
-Order removeItemReducer(Order order, RemoveItemAction action) {
-  order.remove(action.product);
+ActivitiesGroup stopActivityReducer(ActivitiesGroup activitiesGroup, StopActivityAction action) {
+  activitiesGroup.stopActivity(action.activity);
 
-  return order;
+  return activitiesGroup;
 }
 
-Order changeQuantityReducer(Order order, ChangeQuantityAction action) {
-  order.changeQuantity(action.product, action.newQuantity);
+ActivitiesGroup resetActivityReducer(ActivitiesGroup activitiesGroup, ResetActivityAction action) {
+  activitiesGroup.resetActivity(action.activity);
 
-  return order;
+  return activitiesGroup;
 }

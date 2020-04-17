@@ -1,21 +1,19 @@
-import 'package:timertinio/modules/catalogue/data/ProductModel.dart';
+import 'package:timertinio/modules/activity/data/ActivityModel.dart';
 
-class AddItemAction {
-  final Product product;
-  final double quantity;
+class StartActivityAction {
+  final Activity activity;
 
-  AddItemAction(this.product, this.quantity);
+  StartActivityAction(this.activity);
 }
 
-class RemoveItemAction {
-  final Product product;
+class StopActivityAction {
+  final Activity activity;
 
-  RemoveItemAction(this.product);
+  StopActivityAction(this.activity);
 }
 
-class ChangeQuantityAction {
-  final Product product;
-  final double newQuantity;
+class ResetActivityAction {
+  final Activity activity;
 
-  ChangeQuantityAction(this.product, this.newQuantity);
+  ResetActivityAction(this.activity);
 }
