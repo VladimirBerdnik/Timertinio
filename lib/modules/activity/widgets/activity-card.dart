@@ -24,8 +24,8 @@ class ActivityCardState extends State<ActivityCard> {
   void initState() {
     _activity = widget.activity;
     timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
+      // State is set to render fresh data in timer
       this.setState(() {});
-      // something here
     });
     super.initState();
   }
