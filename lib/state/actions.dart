@@ -6,6 +6,12 @@ class StartActivityAction {
   StartActivityAction(this.activity);
 }
 
+class AddActivityAction {
+  final String name;
+
+  AddActivityAction(this.name);
+}
+
 class StopActivityAction {
   final Activity activity;
 

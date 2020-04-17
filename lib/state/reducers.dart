@@ -1,4 +1,5 @@
 import 'package:timertinio/modules/activity/data/ActivitiesGroupModel.dart';
+import 'package:timertinio/modules/activity/data/ActivityModel.dart';
 import 'package:timertinio/state/actions.dart';
 import 'package:timertinio/state/state.dart';
 
@@ -13,6 +14,8 @@ ActivitiesGroup activitiesGroupReducer(ActivitiesGroup activitiesGroup, action) 
     return stopActivityReducer(activitiesGroup, action);
   } else if (action is ResetActivityAction) {
     return resetActivityReducer(activitiesGroup, action);
+  }else if (action is AddActivityAction) {
+    return addActivityReducer(activitiesGroup, action);
   }
 
   return activitiesGroup;
@@ -32,6 +35,12 @@ ActivitiesGroup stopActivityReducer(ActivitiesGroup activitiesGroup, StopActivit
 
 ActivitiesGroup resetActivityReducer(ActivitiesGroup activitiesGroup, ResetActivityAction action) {
   activitiesGroup.resetActivity(action.activity);
+
+  return activitiesGroup;
+}
+
+ActivitiesGroup addActivityReducer(ActivitiesGroup activitiesGroup, AddActivityAction action) {
+  activitiesGroup.add(new Activity(action.name));
 
   return activitiesGroup;
 }

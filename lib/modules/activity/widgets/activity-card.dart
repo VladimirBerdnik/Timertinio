@@ -30,7 +30,8 @@ class ActivityCardState extends State<ActivityCard> {
             converter: (Store store) => store,
             builder: (context, Store store) {
               return FlatButton(
-                child: Text(_activity.name + " " + _activity.duration.toString()),
+                child: Text(_activity.name + "\n" + _activity.duration.toString().split('.').first,
+                    textAlign: TextAlign.center),
                 color: Colors.black12,
                 onPressed: () {
                   if (_activity.isStarted()) {
