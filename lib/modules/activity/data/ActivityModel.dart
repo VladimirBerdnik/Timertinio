@@ -1,13 +1,15 @@
 class Activity {
   final String _name;
-  double _duration = 0.0;
+  Duration _duration = new Duration();
   DateTime _lastStartTime;
 
   Activity(this._name);
 
   String get name => _name;
 
-  double get duration => _duration + (isStarted() ? DateTime.now().difference(_lastStartTime).inSeconds : 0);
+  Duration get duration => !isStarted() ? _duration : _duration + DateTime.now().difference(_lastStartTime);
+
+  DateTime get lastStartTime => _lastStartTime;
 
   bool isStarted() {
     return _lastStartTime != null;
@@ -26,26 +28,28 @@ class Activity {
       return;
     }
 
-    _duration += DateTime.now().difference(_lastStartTime).inSeconds;
+    _duration = _duration + DateTime.now().difference(_lastStartTime);
+    _lastStartTime = null;
   }
 
   void reset() {
-    this._duration = 0.0;
+    this._duration = new Duration();
     this._lastStartTime = null;
   }
 
   toJson() {
     return {
       'name': _name,
-      'duration': _duration,
-      'lastStartTime': _lastStartTime.millisecondsSinceEpoch,
+      'duration': _duration.inSeconds,
+      'lastStartTime': isStarted() ? _lastStartTime.millisecondsSinceEpoch : null
     };
   }
 
   static Activity fromJson(json) {
     Activity activity = Activity(json['name']);
-    activity._duration = json['duration'] as double;
-    activity._lastStartTime = DateTime.fromMillisecondsSinceEpoch(json['lastStartTime'] as int);
+    activity._duration = new Duration(seconds: json['duration'] as int);
+    activity._lastStartTime =
+        json['lastStartTime'] != null ? DateTime.fromMillisecondsSinceEpoch(json['lastStartTime'] as int) : null;
 
     return activity;
   }
