@@ -46,5 +46,7 @@ class Activity {
     Activity activity = Activity(json['name']);
     activity._duration = json['duration'] as double;
     activity._lastStartTime = DateTime.fromMillisecondsSinceEpoch(json['lastStartTime'] as int);
+
+    return activity;
   }
 }
