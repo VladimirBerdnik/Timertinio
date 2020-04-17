@@ -7,6 +7,8 @@ class Activity {
 
   String get name => _name;
 
+  double get duration => _duration + (isStarted() ? DateTime.now().difference(_lastStartTime).inSeconds : 0);
+
   bool isStarted() {
     return _lastStartTime != null;
   }

@@ -9,6 +9,9 @@ class ActivitiesGroup {
     this._items.add(activity);
   }
 
+
+  List<Activity> get activities => _items;
+
   Activity getActivity(Activity activity) {
     return _items.firstWhere((Activity item) => item.name == activity.name);
   }
