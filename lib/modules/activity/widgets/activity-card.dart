@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:timertinio/modules/activity/data/ActivityModel.dart';
+import 'package:timertinio/state/actions.dart';
 import 'package:timertinio/state/state.dart';
 
 class ActivityCard extends StatefulWidget {
@@ -29,11 +30,17 @@ class ActivityCardState extends State<ActivityCard> {
             converter: (Store store) => store,
             builder: (context, Store store) {
               return FlatButton(
-                child: Text(_activity.name),
+                child: Text(_activity.name + " " + _activity.duration.toString()),
                 color: Colors.black12,
                 onPressed: () {
-//                  store.state.order.hasActivity(_activity)
-//                  store.dispatch(ActivityActions.AddItemAction(_activity, 1.0));
+                  if (_activity.isStarted()) {
+                    store.dispatch(StopActivityAction(_activity));
+                  } else {
+                    store.dispatch(StartActivityAction(_activity));
+                  }
+                },
+                onLongPress: () {
+                  store.dispatch(ResetActivityAction(_activity));
                 },
               );
             }));
