@@ -1,5 +1,5 @@
 name: timertinio
-description: Заказ онлайн. Товар гарантированно на 95% в наличии
+description: Control your time spending
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -29,7 +29,7 @@ dependencies:
   redux: ^3.0.0
   redux_persist: ^0.8.3
   path_provider:
-  permission_handler: '^4.3.0'
+  permission_handler: '^5.0.0+hotfix.3'
 
 dev_dependencies:
   flutter_test:
