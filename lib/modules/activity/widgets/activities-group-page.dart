@@ -100,12 +100,93 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
           });
     }
 
+    Widget slideRightBackground() {
+      return Container(
+        color: Colors.green,
+        child: Align(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(width: 20),
+              Icon(Icons.refresh, color: Colors.white),
+              Text(
+                " Reset",
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+                textAlign: TextAlign.left,
+              ),
+            ],
+          ),
+          alignment: Alignment.centerLeft,
+        ),
+      );
+    }
+
+    Widget slideLeftBackground() {
+      return Container(
+        color: Colors.red,
+        child: Align(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Icon(Icons.delete, color: Colors.white),
+              Text(
+                " Delete",
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+                textAlign: TextAlign.right,
+              ),
+              SizedBox(width: 20),
+            ],
+          ),
+          alignment: Alignment.centerRight,
+        ),
+      );
+    }
+
     return StoreConnector<AppState, dynamic>(
         converter: (store) => store,
         builder: (context, store) {
           return Scaffold(
               body: ListView(children: <Widget>[
-                ...store.state.activitiesGroup.activities.toList().map((Activity item) => ActivityCard(item))
+                ...store.state.activitiesGroup.activities.toList().map((Activity item) => Dismissible(
+
+                      secondaryBackground: slideLeftBackground(),
+                      background: slideRightBackground(),
+                      key: Key(item.name),
+                      child: ActivityCard(item),
+                      confirmDismiss: (direction) async {
+                        if (direction == DismissDirection.endToStart) {
+                          final bool res = await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: Text("Are you sure you want to delete ${item.name}?"),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text("Cancel", style: TextStyle(color: Colors.black)),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    FlatButton(
+                                      child: Text("Delete", style: TextStyle(color: Colors.red)),
+                                      onPressed: () {
+                                        store.dispatch(RemoveActivityAction(item));
+                                        setState(() {
+
+                                        });
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
+                          return res;
+                        } else {
+                          store.dispatch(ResetActivityAction(item));
+                          return false;
+                        }
+                      },
+                    )),
               ]),
               floatingActionButton: StoreConnector<AppState, ActivitiesGroup>(
                   converter: (store) => store.state.activitiesGroup,
