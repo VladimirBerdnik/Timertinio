@@ -49,20 +49,12 @@ class ActivityCardState extends State<ActivityCard> {
                     leading: Icon(_activity.isStarted() ? Icons.pause : Icons.play_arrow),
                     title: Text(_activity.name),
                     subtitle: Text(_activity.duration.toString().split('.').first),
-                    trailing: IconButton(
-                        icon: Icon(Icons.cancel),
-                        onPressed: () {
-                          store.dispatch(RemoveActivityAction(_activity));
-                        }),
                     onTap: () {
                       if (_activity.isStarted()) {
                         store.dispatch(StopActivityAction(_activity));
                       } else {
                         store.dispatch(StartActivityAction(_activity));
                       }
-                    },
-                    onLongPress: () {
-                      store.dispatch(ResetActivityAction(_activity));
                     },
                   )
                 ],
