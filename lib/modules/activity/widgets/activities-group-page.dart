@@ -53,14 +53,14 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
       );
     }
 
-    _displayDialog(BuildContext context) async {
+    _openActivityDialog(BuildContext context) async {
       return showDialog(
           context: context,
           builder: (context) {
             _textFieldController.text = '';
 
             return AlertDialog(
-              title: Text('New Activity details'),
+              title: Text('Activity details'),
               content: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,13 +112,15 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
                   builder: (context, ActivitiesGroup activitiesGroup) {
                     return FloatingActionButton(
                         onPressed: () async {
-                          if (!await _displayDialog(context)) {
+                          if (!await _openActivityDialog(context)) {
                             return;
                           }
 
-                          if (_newActivityName != null) {
-                            store.dispatch(AddActivityAction(_newActivityName, _newActivityColor));
+                          if (_newActivityName == null || _newActivityName == '') {
+                            return;
                           }
+
+                          store.dispatch(AddActivityAction(_newActivityName, _newActivityColor));
                         },
                         child: Icon(Icons.alarm_add));
                   }));
