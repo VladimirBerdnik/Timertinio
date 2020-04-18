@@ -30,6 +30,7 @@ dependencies:
   redux_persist: ^0.8.3
   path_provider:
   permission_handler: '^5.0.0+hotfix.3'
+  flutter_material_color_picker: ^1.0.3
 
 dev_dependencies:
   flutter_test:
