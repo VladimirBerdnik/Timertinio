@@ -17,7 +17,7 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
   Widget build(BuildContext context) {
     TextEditingController _textFieldController = TextEditingController();
     Color _tempColor;
-    Color _newActivityColor = Colors.blue[200];
+    Color _newActivityColor = Colors.blue[100];
     String _newActivityName;
 
     _openColorPicker() async {
@@ -28,10 +28,10 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
             contentPadding: const EdgeInsets.all(6.0),
             title: Text("Pick the Activity color"),
             content: MaterialColorPicker(
-              allowShades: false,
-              colors: fullMaterialColors,
+              colors: materialColors,
               selectedColor: _newActivityColor,
               onMainColorChange: (color) => setState(() => _tempColor = color),
+              onColorChange: (color) => setState(() => _tempColor = color),
             ),
             actions: [
               FlatButton(
