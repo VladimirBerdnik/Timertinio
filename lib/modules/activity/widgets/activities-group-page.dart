@@ -57,7 +57,7 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
       return showDialog(
           context: context,
           builder: (context) {
-            _textFieldController.text = '';
+            _textFieldController.clear();
 
             return AlertDialog(
               title: Text('Activity details'),
@@ -68,6 +68,7 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
                   children: <Widget>[
                     Expanded(
                       child: TextField(
+                        autofocus: true,
                         controller: _textFieldController,
                         decoration: InputDecoration(hintText: 'Activity name'),
                       ),
