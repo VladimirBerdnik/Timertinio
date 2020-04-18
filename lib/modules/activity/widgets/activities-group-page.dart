@@ -34,10 +34,7 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
               onColorChange: (color) => setState(() => _tempColor = color),
             ),
             actions: [
-              FlatButton(
-                child: Text('CANCEL'),
-                onPressed: Navigator.of(context).pop,
-              ),
+              FlatButton(child: Text('CANCEL'), onPressed: Navigator.of(context).pop),
               FlatButton(
                 child: Text('SUBMIT'),
                 onPressed: () {
@@ -149,7 +146,6 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
           return Scaffold(
               body: ListView(children: <Widget>[
                 ...store.state.activitiesGroup.activities.toList().map((Activity item) => Dismissible(
-
                       secondaryBackground: slideLeftBackground(),
                       background: slideRightBackground(),
                       key: Key(item.name),
@@ -172,9 +168,8 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
                                       child: Text("Delete", style: TextStyle(color: Colors.red)),
                                       onPressed: () {
                                         store.dispatch(RemoveActivityAction(item));
-                                        setState(() {
-
-                                        });
+                                        // Trigger re-rendering
+                                        setState(() {});
                                         Navigator.of(context).pop();
                                       },
                                     ),

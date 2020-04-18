@@ -46,9 +46,9 @@ class ActivityCardState extends State<ActivityCard> {
               child: Column(
                 children: <Widget>[
                   ListTile(
-                    leading: Icon(_activity.isStarted() ? Icons.pause : Icons.play_arrow),
+                    trailing: Icon(_activity.isStarted() ? Icons.pause : Icons.play_arrow),
                     title: Text(_activity.name),
-                    subtitle: Text(_activity.duration.toString().split('.').first),
+                    subtitle: Text(_activity.duration.toString().split('.').first, textAlign: TextAlign.right),
                     onTap: () {
                       if (_activity.isStarted()) {
                         store.dispatch(StopActivityAction(_activity));
