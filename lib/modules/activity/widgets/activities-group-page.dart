@@ -202,7 +202,7 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
                             return;
                           }
 
-                          store.dispatch(AddActivityAction(_newActivityName, _newActivityColor));
+                          store.dispatch(AddActivityAction(_newActivityName, 0, _newActivityColor));
                         },
                         child: Icon(Icons.alarm_add));
                   }));

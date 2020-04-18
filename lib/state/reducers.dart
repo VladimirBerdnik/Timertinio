@@ -42,7 +42,7 @@ ActivitiesGroup resetActivityReducer(ActivitiesGroup activitiesGroup, ResetActiv
 }
 
 ActivitiesGroup addActivityReducer(ActivitiesGroup activitiesGroup, AddActivityAction action) {
-  activitiesGroup.add(new Activity(action.name, action.color));
+  activitiesGroup.add(new Activity(action.name, action.priority, action.color));
 
   return activitiesGroup;
 }

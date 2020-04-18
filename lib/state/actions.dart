@@ -10,8 +10,9 @@ class StartActivityAction {
 class AddActivityAction {
   final String name;
   final Color color;
+  final int priority;
 
-  AddActivityAction(this.name, this.color);
+  AddActivityAction(this.name, this.priority, this.color);
 }
 
 class RemoveActivityAction {
