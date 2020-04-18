@@ -10,7 +10,6 @@ class AppState {
 
   static AppState emptyState() {
     ActivitiesGroup activitiesGroup = ActivitiesGroup();
-    activitiesGroup.add(Activity('Разработка приложения'));
 
     return AppState(activitiesGroup);
   }
