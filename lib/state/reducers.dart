@@ -16,6 +16,8 @@ ActivitiesGroup activitiesGroupReducer(ActivitiesGroup activitiesGroup, action) 
     return resetActivityReducer(activitiesGroup, action);
   } else if (action is AddActivityAction) {
     return addActivityReducer(activitiesGroup, action);
+  } else if (action is EditActivityAction) {
+    return editActivityReducer(activitiesGroup, action);
   } else if (action is RemoveActivityAction) {
     return removeActivityReducer(activitiesGroup, action);
   }
@@ -43,6 +45,12 @@ ActivitiesGroup resetActivityReducer(ActivitiesGroup activitiesGroup, ResetActiv
 
 ActivitiesGroup addActivityReducer(ActivitiesGroup activitiesGroup, AddActivityAction action) {
   activitiesGroup.add(new Activity(action.name, action.priority, action.color));
+
+  return activitiesGroup;
+}
+
+ActivitiesGroup editActivityReducer(ActivitiesGroup activitiesGroup, EditActivityAction action) {
+  activitiesGroup.edit(action.activity, action.name, action.priority, action.color);
 
   return activitiesGroup;
 }

@@ -15,6 +15,15 @@ class AddActivityAction {
   AddActivityAction(this.name, this.priority, this.color);
 }
 
+class EditActivityAction {
+  final Activity activity;
+  final String name;
+  final Color color;
+  final int priority;
+
+  EditActivityAction(this.activity, this.name, this.priority, this.color);
+}
+
 class RemoveActivityAction {
   final Activity activity;
 

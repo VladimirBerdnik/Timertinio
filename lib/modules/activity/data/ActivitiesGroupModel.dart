@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:timertinio/modules/activity/data/ActivityModel.dart';
 
 class ActivitiesGroup {
@@ -9,6 +10,11 @@ class ActivitiesGroup {
 
   void add(Activity activity) {
     this._items.add(activity);
+  }
+
+  void edit(Activity activityToEdit, String newName, int newPriority, Color newColor) {
+    Activity activity = getActivity(activityToEdit);
+    activity.edit(newName, newPriority, newColor);
   }
 
   void remove(Activity activity) {

@@ -41,8 +41,14 @@ class Activity {
   }
 
   void reset() {
-    this._duration = new Duration();
-    this._lastStartTime = null;
+    _duration = new Duration();
+    _lastStartTime = null;
+  }
+
+  void edit(String newName, int newPriority, Color newColor) {
+    _name = newName;
+    _priority = newPriority;
+    _color = newColor;
   }
 
   toJson() {
