@@ -38,11 +38,12 @@ class ActivityCardState extends State<ActivityCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: StoreConnector<AppState, Store>(
-            converter: (Store store) => store,
-            builder: (context, Store store) {
-              return Column(
+    return StoreConnector<AppState, Store>(
+        converter: (Store store) => store,
+        builder: (context, Store store) {
+          return Card(
+              color: _activity.color,
+              child: Column(
                 children: <Widget>[
                   ListTile(
                     leading: Icon(_activity.isStarted() ? Icons.pause : Icons.play_arrow),
@@ -65,7 +66,7 @@ class ActivityCardState extends State<ActivityCard> {
                     },
                   )
                 ],
-              );
-            }));
+              ));
+        });
   }
 }

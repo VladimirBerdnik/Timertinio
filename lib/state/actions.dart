@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:timertinio/modules/activity/data/ActivityModel.dart';
 
 class StartActivityAction {
@@ -8,8 +9,9 @@ class StartActivityAction {
 
 class AddActivityAction {
   final String name;
+  final Color color;
 
-  AddActivityAction(this.name);
+  AddActivityAction(this.name, this.color);
 }
 
 class RemoveActivityAction {
