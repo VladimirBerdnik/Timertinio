@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 class Activity {
   final String _name;
   final Color _color;
+  final int _priority;
   Duration _duration = new Duration();
   DateTime _lastStartTime;
 
-  Activity(this._name, this._color);
+  Activity(this._name, this._priority, this._color);
 
   String get name => _name;
+
+  int get priority => _priority;
 
   Duration get duration => !isStarted() ? _duration : _duration + DateTime.now().difference(_lastStartTime);
 
@@ -47,15 +50,22 @@ class Activity {
       'name': _name,
       'color': _color.value,
       'duration': _duration.inSeconds,
+      'priority': _priority,
       'lastStartTime': isStarted() ? _lastStartTime.millisecondsSinceEpoch : null
     };
   }
 
   static Activity fromJson(json) {
-    Activity activity = Activity(json['name'], new Color(json['color'] as int));
-    activity._duration = new Duration(seconds: json['duration'] as int);
-    activity._lastStartTime =
+    final int priority = json['priority'] != null ? json['priority'] as int : 0;
+    final String name = json['name'];
+    final Color color = new Color(json['color'] as int);
+    final Duration duration = new Duration(seconds: json['duration'] as int);
+    final DateTime lastStartTime =
         json['lastStartTime'] != null ? DateTime.fromMillisecondsSinceEpoch(json['lastStartTime'] as int) : null;
+
+    Activity activity = Activity(name, priority, color);
+    activity._duration = duration;
+    activity._lastStartTime = lastStartTime;
 
     return activity;
   }
