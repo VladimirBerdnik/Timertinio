@@ -17,7 +17,7 @@ class _NewActivityCardState extends State<NewActivityCard> {
           children: <Widget>[
             ListTile(
               trailing: Icon(Icons.add),
-              title: Text('Add new...'),
+              title: Text('[New activity]', style: TextStyle(color: Colors.grey),),
               subtitle: Text('--:--:--', textAlign: TextAlign.right,),
               onTap: widget._onTap,
             )
