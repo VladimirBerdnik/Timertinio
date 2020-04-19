@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:timertinio/modules/activity/data/ActivitiesGroupModel.dart';
 import 'package:timertinio/modules/activity/data/ActivityModel.dart';
 import 'package:timertinio/modules/activity/widgets/activity-card.dart';
 import 'package:timertinio/modules/activity/widgets/activity-dialog.dart';
+import 'package:timertinio/modules/activity/widgets/new-activity-card.dart';
 import 'package:timertinio/state/actions.dart';
 import 'package:timertinio/state/state.dart';
 
@@ -111,20 +114,16 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
                           return false;
                         }
                       },
-                    )),
-              ]),
-              floatingActionButton: StoreConnector<AppState, ActivitiesGroup>(
-                  converter: (store) => store.state.activitiesGroup,
-                  builder: (context, ActivitiesGroup activitiesGroup) {
-                    return FloatingActionButton(
-                        onPressed: () async {
-                          dynamic result = await _openActivityDialog(context);
-                          if (result != null) {
-                            store.dispatch(AddActivityAction(result['name'], 0, result['color']));
-                          }
-                        },
-                        child: Icon(Icons.alarm_add));
-                  }));
+                    ),
+                  ),
+              NewActivityCard(() async {
+                dynamic result = await _openActivityDialog(context);
+                if (result != null) {
+                  store.dispatch(AddActivityAction(result['name'], 0, result['color']));
+                }
+              }),
+            ],
+          ));
         });
   }
 }
