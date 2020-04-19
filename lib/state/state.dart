@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:timertinio/modules/activity/data/ActivitiesGroupModel.dart';
-import 'package:timertinio/modules/activity/data/ActivityModel.dart';
 
 class AppState {
   final ActivitiesGroup activitiesGroup;
