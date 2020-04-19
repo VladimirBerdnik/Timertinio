@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:timertinio/modules/activity/data/ActivitiesGroupModel.dart';
 import 'package:timertinio/modules/activity/data/ActivityModel.dart';
 import 'package:timertinio/modules/activity/widgets/activity-card.dart';
 import 'package:timertinio/modules/activity/widgets/activity-dialog.dart';
@@ -16,6 +15,26 @@ class ActivitiesGroupPage extends StatefulWidget {
 }
 
 class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
+  Timer _timer;
+  List<Activity> items = [];
+
+  @override
+  void initState() {
+    _timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
+      // State is set to render fresh data in timer
+      this.setState(() {
+        items.sort((Activity a, Activity b) => b.duration.compareTo(a.duration));
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     _openActivityDialog(BuildContext context, [String activityName, Color activityColor]) async {
@@ -71,9 +90,12 @@ class _ActivitiesGroupPageState extends State<ActivitiesGroupPage> {
     return StoreConnector<AppState, dynamic>(
         converter: (store) => store,
         builder: (context, store) {
+          items = store.state.activitiesGroup.activities;
           return Scaffold(
-              body: ListView(children: <Widget>[
-                ...store.state.activitiesGroup.activities.toList().map((Activity item) => Dismissible(
+              body: ListView(
+            children: <Widget>[
+              ...items.toList().map(
+                    (Activity item) => Dismissible(
                       secondaryBackground: slideLeftBackground(),
                       background: slideRightBackground(),
                       key: Key(item.name),
