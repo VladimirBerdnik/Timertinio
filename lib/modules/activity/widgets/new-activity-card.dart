@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NewActivityCard extends StatefulWidget {
-  final dynamic _onTap;
+  final Function _onTap;
 
   NewActivityCard(this._onTap);
 
