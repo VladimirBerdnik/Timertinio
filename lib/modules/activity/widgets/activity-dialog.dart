@@ -1,6 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 
+List<MaterialColor> mainColors = <MaterialColor>[
+  Colors.grey,
+  Colors.blueGrey,
+  Colors.teal,
+  Colors.lime,
+  Colors.green,
+  Colors.yellow,
+  Colors.orange,
+  Colors.deepOrange,
+  Colors.pink,
+  Colors.purple,
+  Colors.deepPurple,
+  Colors.indigo,
+  Colors.blue,
+  Colors.cyan,
+  Colors.brown,
+];
+
 class ActivityDialog extends StatefulWidget {
   final String activityName;
   final Color activityColor;
@@ -19,13 +37,23 @@ class _ActivityDialogState extends State<ActivityDialog> {
     Color _newActivityColor = widget.activityColor != null ? widget.activityColor : Colors.blue[100];
 
     _openColorPicker() async {
+      List<ColorSwatch> myPalette = [];
+
+      mainColors.forEach((MaterialColor color) {
+        [50, 200, 400].forEach((int intensity) {
+          myPalette.add(ColorSwatch(color[intensity].value, <int, Color>{}));
+        });
+      });
+      myPalette.add(ColorSwatch(_newActivityColor.value, <int, Color>{}));
+
       return showDialog(
           context: context,
           child: AlertDialog(
             contentPadding: const EdgeInsets.all(6.0),
             title: Text("Pick the Activity color"),
             content: MaterialColorPicker(
-              colors: materialColors,
+              colors: myPalette,
+              allowShades: false,
               selectedColor: _newActivityColor,
               onMainColorChange: (color) => _tempColor = color,
               onColorChange: (color) => _tempColor = color,
