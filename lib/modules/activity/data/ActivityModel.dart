@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Activity {
-  final String _name;
-  final Color _color;
-  final int _priority;
+  String _name;
+  Color _color;
+  int _priority;
   Duration _duration = new Duration();
   DateTime _lastStartTime;
 
